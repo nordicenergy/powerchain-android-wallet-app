@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="Stromtarif für Eigenstrom der STROMDAO">
+    <meta name="keywords" content="Stromtarif, Eigenstrom, STROMDAO, Blockchain">
+    <meta name="author" content="Thorsten Zoerner">
+    <title>Corrently - Eigenstrom</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <style>
+    html {
+        position: relative;
+        min-height: 100%;
+    }
+    .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        /* Set the fixed height of the footer here */
+        height: 60px;
+        line-height: 60px; /* Vertically center the text there */
+        background-color: #f5f5f5;
+        padding-left:20px;
+        padding-right:20px;
+      }
+      body {
+         /* background: url('assets/img/corrently_flavor.png') no-repeat center center fixed; */
+         margin-bottom: 60px; /* Margin bottom by footer height */
+      }
+    .container {
+      margin-bottom:60px;
+    }
+    </style>
+    <link rel="stylesheet" href="assets/css/main.min.css">
+  </head>
+
+  <body>
+
+      <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top shadow-lg">
+           <a class="navbar-brand" href="./"><img src="./imgs/corrently_logo.png" alt="Corrently - Eigentstrom durch Stromverbrauch"></a>
+           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+             <span class="navbar-toggler-icon"></span>
+           </button>
+
+           <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+             <ul class="navbar-nav mr-auto">
+               <li class="nav-item active">
+                 <a class="nav-link" href="./main.html">Mein Corrently</a>
+               </li>
+               <li class="nav-item" id="nav_stromtarif" style="display:none">
+                 <a class="nav-link" href="./tarif.html">Stromtarif</a>
+               </li>
+               <li class="nav-item" id="nav_wallet" style="display:none">
+                 <a class="nav-link" href="./wallet.html">Wallet</a>
+               </li>
+               <li class="nav-item">
+                 <a class="nav-link" href="https://coingate.com/pay/corrently-100" rel="noopener noreferrer nofollow" target="_blank">Corrently kaufen</a>
+               </li>
+             </ul>
+           </div>
+        </nav>
+
+        <div class="container">
+           <div style="padding-top:120px;">
+              <div class="card-group shadow-lg">
+                  <div class="card text-dark bg-light">
+                    <div class="card-header bg-dark text-light">
+                        Verfügbare Corrently
+                    </div>
+                    <div class="card-body" style="text-align:center">
+                      <h1 class="text-warning" title="Betrag, der genutzt werden kann, um neue Erzeugung zu erwerben.">
+                        <strong>
+                          <span class="balance_corrently">-</span>
+                        </strong>
+                      </h1>
+                      bereits genutzt <span class="convertedSupply">-</span> Corrently
+                    </div>
+                  </div>
+                  <div class="card text-dark bg-light">
+                    <div class="card-header bg-dark text-light">
+                      Corrently Eigenstrom
+                    </div>
+                    <div class="card-body" style="text-align:center">
+                      <h1 class="text-warning" title="Bisher erzeugter Corrently Eigenstrom">
+                          <span class="balance_eigenstrom">-</span>
+                      </h1>
+                      kWh
+                    </div>
+                  </div>
+                  <div class="card text-dark bg-light">
+                    <div class="card-header bg-dark text-light">
+                      Strombedarf
+                    </div>
+                    <div class="card-body" style="text-align:center">
+                      <h1 class="text-warning" title="Im Stromtarif hinterlegter Jahresverbrauch"><span class="balance_kwha">-</span></h1>&nbsp;kWh im Jahr
+                    </div>
+                  </div>
+                  <div class="card text-dark bg-light">
+                    <div class="card-header bg-dark text-light">
+                      Deckung des Eigenbedarfs
+                    </div>
+                    <div class="card-body" style="text-align:center">
+                      <h1 class="text-warning" title="Anteil des Jahresverbrauchs, der durch Corrently Eigenstrom gededkt werden kann."><span class="balance_autark">-</span>%</h1>
+                      <span class="kwh_autark"></span>&nbsp;kWh im Jahr
+                    </div>
+                  </div>
+                </div>
+                <div id="info_box" style="display:none">
+                <div class="spacer" style="height:25px;"></div>
+                <div class="card-group shadow-lg" style="display:screen">
+                    <div class="card text-dark bg-white shadow-lg" id="portfolio_box" style="display:screen">
+                      <div class="card-header bg-dark text-light">
+                        Erzeugungs Portfolio
+                      </div>
+                      <div class="card-body bg-white" style="text-align:center">
+                        <canvas id="portfolio" class="embed-responsive"></canvas>
+                      </div>
+                    </div>
+                    <div class="card text-dark bg-white shadow-lg" id="demand_box" style="display:screen">
+                      <div class="card-header bg-dark text-light">
+                        Strombedarf
+                      </div>
+                      <div class="card-body bg-white" style="text-align:center">
+                        <canvas id="demand" class="embed-responsive"></canvas>
+                      </div>
+                    </div>
+              </div>
+            </div>
+              <div class="spacer" style="height:25px;"></div>
+              <h2>Marktplatz</h2>
+              <div class="card-group shadow-lg" id="offers">
+              </div>
+                <div id="tx_history" style="display:none">
+                  <div class="spacer" style="height:25px;"></div>
+                  <h2>Vorgemerkte Transaktionen</h2>
+                  <div class="alert alert-danger shadow-lg" role="alert" style="display:none" id="tx_alert">
+                    <strong>Hinweis: Vormerkung</strong><br/>Es wurde noch kein Jahresverbrauch im <a href="./tarif.html" class="alert-link">Stromtarif</a> zugeordnet.
+                    Mindestens eine Transaktion wurden daher lediglich vorgemerkt und noch nicht in der Blockchain als digitales Eigentum bestätigt. Der Kundenservice ist unter <a href="tel:+4962269680090" class="alert-link">(06226) 9680090</a> oder <a href="mailto:kontakt@stromdao.de" class="alert-link">kontakt@stromdao.de</a> erreichbar.
+                  </div>
+                  <div class="card-group shadow shadow-lg">
+                    <div class="card shadow-lg">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col">
+                            <strong>Datum/Uhrzeit</strong>
+                          </div>
+                          <div class="col">
+                            <strong>Erzeuger</strong>
+                          </div>
+                          <div class="col" style='text-align:right'>
+                            <strong>Corrently</strong>
+                          </div>
+                          <div class="col" style='text-align:right'>
+                            <strong>kWh/Jahr</strong>
+                          </div>
+                        </div>
+                        <div class="transactions">
+
+                        </div>
+                     </div>
+                   </div>
+                 </div>
+                 <div class="spacer" style="height:25px;"></div>
+                 <h2>Erzeugungskapazitäten Corrently Eigenstrom</h2>
+                 <div class="card-group shadow shadow-lg">
+                   <div class="card">
+                     <div class="card-body">
+                         <div id="aliases">
+                           <div class="alert alert-warning shadow-lg" role="alert">
+                             Noch kein Transaktionen in der öffentlichen Ethereum Blockchain vorhanden.
+                           </div>
+                         </div>
+                       </div>
+                   </div>
+                </div>
+               </div>
+             <div class="spacer" style="height:100px;"></div>
+          </div>
+       </div>
+       <footer class="footer">
+         <p class="text-muted">© 2016-2018 STROMDAO - | <a href="https://stromdao.de/de/impressum">Impressum und Datenschutzhinweis</a> | <a href="https://stromdao.de/de/kontakt">Kontakt</a> |
+         <a href='./wallet.html' title='Ethereum Wallet/Account'><span class="address"></span></a> | <a href='#' id='logout'>Geräteverknüpfung aufheben (abmelden)</a></small>
+         </p>
+       </footer>
+    <script src="assets/js/main.min.js"></script>
+     <script src="assets/js/app.js"></script>
+  </body>
+
+</html>

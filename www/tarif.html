@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="Stromtarif für Eigenstrom der STROMDAO">
+    <meta name="keywords" content="Stromtarif, Eigenstrom, STROMDAO, Blockchain">
+    <meta name="author" content="Henrik H. Boelsmand">
+    <title>Corrently - Eigenstrom</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <style>
+    html {
+        position: relative;
+        min-height: 100%;
+    }
+    .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        /* Set the fixed height of the footer here */
+        height: 60px;
+        line-height: 60px; /* Vertically center the text there */
+        background-color: #f5f5f5;
+        padding-left:20px;
+        padding-right:20px;
+      }
+      body {
+         /* background: url('assets/img/corrently_flavor.png') no-repeat center center fixed; */
+         margin-bottom: 60px; /* Margin bottom by footer height */
+      }
+    .container {
+      margin-bottom:60px;
+    }
+    </style>
+    <link rel="stylesheet" href="assets/css/main.min.css">
+  </head>
+
+  <body>
+
+      <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top shadow-lg">
+           <a class="navbar-brand" href="./"><img src="./imgs/corrently_logo.png" alt="Corrently - Eigentstrom durch Stromverbrauch"></a>
+           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+             <span class="navbar-toggler-icon"></span>
+           </button>
+
+           <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+             <ul class="navbar-nav mr-auto">
+               <li class="nav-item">
+                 <a class="nav-link" href="./main.html">Mein Corrently</a>
+               </li>
+               <li class="nav-item active">
+                 <a class="nav-link" href="./tarif.html">Tarifwechsel</a>
+               </li>
+             </ul>
+           </div>
+        </nav>
+
+
+        <div style="padding-top:120px;">
+             <div class="embed-responsive embed-responsive-1by1">
+         <iframe src="https://stadtwerke-energie-verbund.de/tarife-iframe?Reseller=c3ec23a16304f8d6c8692dcac2343c05&resellerId=&Dynamic=1&products=PP_dynamisch_eingeschr_4;PP_dynamisch_eingeschr_3;GP_dynamisch_4;GP_dynamisch_3;&a=;;GPE02V04;GPE02V04;&b=PPE02V04;PPE02V04;;;&c=;;;;&d=PPE07V03;PPE07V02;GPE07V03;GPE07V02;&e=PPE04V03;PPE04V03;GPE04V01;GPE04V03;&f=PPE05V01;PPE05V04;GPE05V01;GPE05V04;&g=PPE03V01;PPE03V01;GPE03V01;GPE03V01;&h=PPE08V01;PPE08V01;GPE08V02;GPE08V02;&i=PPE01V02;PPE01V02;GPE01V01;GPE01V01;&j=PPE12V01;PPE12V01;GPE12V01;GPE12V01;&k=PPE11V0001;PPE11V0001;GPE11V0001;GPE11V0001;&l=PPE13V01;PPE13V01;GPE13V01;GPE13V01;&m=PPE14V0;PPE14V0;GPE14V0;GPE14V0;&n=PPE15V01;PPE15V01;GPE15V01;GPE15V01;&o=PPE16V11;PPE16V05;GPE16V15;GPE16V07;&z=Corrently Strom;Standard Ökostrom;Corrently Gas;Standard  Gas (CO2 Neutral);"
+         class="embed-responsive-item" id="tarifframe">
+         </iframe>
+       </div>
+     </div>
+       <footer class="footer">
+         <p class="text-muted">© 2016-2018 STROMDAO - | <a href="https://stromdao.de/de/impressum">Impressum und Datenschutzhinweis</a> | <a href="https://stromdao.de/de/kontakt">Kontakt</a> |
+        <a href='./wallet.html' title='Ethereum Wallet/Account'><span class="address"></span></a> | <a href='#' id='logout'>abmelden</a></small>
+         </p>
+       </footer>
+    <script src="assets/js/main.min.js"></script>
+     <script src="assets/js/app.js"></script>
+     <script>
+     var $window = $(window);
+     var responded=false;
+     function checkWidth() {
+         var windowsize = $window.width();
+         if ((windowsize < 600)||(responded)) {
+             responded=true;
+             //if the window is greater than 440px wide then turn on jScrollPane..
+             $('#tarifframe').css('position','absolute');
+             $('#tarifframe').css('top','130');
+             $('#tarifframe').css('left','0');
+             //$('#tarifframe').css('width',windowsize-20);
+             $(document).ready(function() {
+                     location.href=$('#tarifframe').attr('src')+"&ressellerId="+window.wallet.address;
+                     $('#tarifframe').width($window.width());
+                     $('#tarifframe').height($window.height());
+              });
+         } else {
+           $('#tarifframe').width($window.width()-20);
+           $('#tarifframe').height($window.height()-240);
+         }
+     }
+     // Execute on load
+     checkWidth();
+     // Bind event listener
+     $(window).resize(checkWidth);
+     $(document).ready(function() {
+       if(typeof window.wallet != "undefined") {
+              $('#tarifframe').attr("src",$('#tarifframe').attr("src")+"&ressellerId="+window.wallet.address);
+       }
+     })
+     </script>
+
+  </body>
+
+</html>

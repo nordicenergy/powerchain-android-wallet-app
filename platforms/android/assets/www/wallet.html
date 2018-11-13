@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="Corrently ist wie das EEG, nur direkt und digital.">
+    <meta name="keywords" content="Stromtarif, Eigenstrom, STROMDAO, Blockchain">
+    <meta name="author" content="Thorsten Zoerner">
+    <title>Corrently - Digitale Brieftasche</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <style>
+    html {
+        position: relative;
+        min-height: 100%;
+    }
+    .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        /* Set the fixed height of the footer here */
+        height: 60px;
+        line-height: 60px; /* Vertically center the text there */
+        background-color: #f5f5f5;
+        padding-left:20px;
+        padding-right:20px;
+      }
+      body {
+         /* background: url('assets/img/corrently_flavor.png') no-repeat center center fixed; */
+         margin-bottom: 60px; /* Margin bottom by footer height */
+      }
+    .container {
+      margin-bottom:60px;
+    }
+    </style>
+    <link rel="stylesheet" href="assets/css/main.min.css">
+  </head>
+
+  <body>
+
+      <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top shadow-lg">
+           <a class="navbar-brand" href="./main.html"><img src="./imgs/corrently_logo.png" alt="Corrently - Eigentstrom durch Stromverbrauch"></a>
+           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+             <span class="navbar-toggler-icon"></span>
+           </button>
+
+           <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+             <ul class="navbar-nav mr-auto">
+               <li class="nav-item" style="">
+                 <a class="nav-link" href="./main.html">Mein Corrently</a>
+               </li>
+               <li class="nav-item active" style="">
+                 <a class="nav-link" href="./wallet.html">Wallet</a>
+               </li>
+               <li class="nav-item">
+                 <a class="nav-link" href="https://coingate.com/pay/corrently-100" rel="noopener noreferrer nofollow" target="_blank">Corrently kaufen</a>
+               </li>
+             </ul>
+           </div>
+        </nav>
+
+        <div class="container">
+         <div style="padding-top:120px;">
+           <h2>Ethereum Account: <span class="address"></span></h2>
+           <div class="card-group shadow-lg">
+             <div class="card text-dark bg-light">
+               <div class="card-header bg-dark text-light">
+                 Guthaben Corrently (kWh Nutzung)
+               </div>
+               <div class="card-body" style="text-align:center">
+                 <h1 class="text-warning">
+                     <span class="balance_corrently"></span>
+                 </h1>
+               </div>
+             </div>
+               <div class="card text-dark bg-light">
+                 <div class="card-header bg-dark text-light">
+                     Guthaben CORI (kWh Erzeugung)
+                 </div>
+                 <div class="card-body" style="text-align:center">
+                   <h1 class="text-warning">
+                     <strong>
+                       <span class="balance_cori"></span>
+                     </strong>
+                   </h1>
+                 </div>
+               </div>
+               <div class="card text-dark bg-light">
+                 <div class="card-header bg-dark text-light">
+                  Guthaben Ether
+                 </div>
+                 <div class="card-body" style="text-align:center">
+                   <h1 class="text-warning"><span class="balance_eth"></span></h1>
+                 </div>
+               </div>
+          </div>
+          <div class="spacer" style="height:25px;"></div>
+           <div class="card text-dark bg-light shadow-lg">
+             <div class="card-header bg-dark text-light">
+               Privater Schlüssel
+             </div>
+             <div class="card-body" style="text-align:center">
+
+              <div id="opk"><button id="showPK" class="btn btn-lg btn-danger">anzeigen</button></div>
+            </div>
+           </div>
+           <div class="spacer" style="height:25px;"></div>
+           <div class="card text-dark bg-light shadow-lg">
+             <div class="card-header bg-dark text-light">
+               Verknüpfte Lieferstelle (Stromanschluß)
+             </div>
+             <div class="card-body" style="text-align:center">
+                <input type='text' name='demandSide' id='demandSide' class='form-control'/>
+                <button id="connectDemand" class="btn btn-lg btn-danger">Verbinden</button>
+            </div>
+           </div>
+           <div class="spacer" style="height:25px;"></div>
+           <div class="card text-dark bg-light shadow-lg">
+             <div class="card-header bg-dark text-light">
+               Benutzername/Kennwort Wallet verwenden
+             </div>
+             <div class="card-body" style="text-align:left">
+                <div class="form-group">
+                  <label for="username">Benutzernamen</label>
+                  <input type="text" name="username" class="form-control" id="username">
+                  <label for="password">Kennwort</label>
+                  <input type="password" name="password" class="form-control" id="password">
+                  <div style="text-align:center;margin-top:5px;margin-bottom:5px;">
+                      <button id="loginBrain" class="btn btn-warning">Wallet öffnen</button>
+                  </div>
+                  <p style="text-align:center">Ihr Endgerät/Browser wird automatisch mit dieser Wallet verknüpft. Die bestehende Verknüpfung wird aufgehoben.</p>
+                </div>
+            </div>
+
+           </div>
+          <div class="spacer" style="height:25px;"></div>
+           <div class="card-group">
+             <div class="card text-dark bg-light">
+               <div class="card-header bg-dark text-light">
+                 Importieren bei MyEtherWallet
+               </div>
+               <a href="https://www.myetherwallet.com/" target="_blank"><img class="card-img-top" src="./assets/img/myetherwallet.png" alt="MyEtherwallet"></a>
+               <div class="card-body">
+                 <p>MyEtherWallet ist eine Online Wallet, die Transaktionen bei der Ethereum-Blockchain erlaubt auszuführen.</p>
+                 <ul>
+                   <li><a href="https://www.myetherwallet.com/" target="_blank">MyEtherWallet</a> öffnen</li>
+                   <li>Transaktion wählen (Beispiel: <em>Send Tokens</em>)</li>
+                   <li><em>How would you like to access your wallet?</em> mit <em>Private Key</em> antworten</li>
+               </div>
+             </div>
+             <div class="card text-dark bg-light">
+               <div class="card-header bg-dark text-light">
+                 Nutzung bei Etherscan
+               </div>
+                <a href="https://etherscan.io/address/0x9707f3c9ca3c554a6e6d31b71a3c03d7017063f4" id="etherscan" target="_blank">
+                  <img class="card-img-top" src="./assets/img/etherscan.png" alt="Etherscan"></a>
+               <div class="card-body">
+                 <p>Etherscan ist ein sogenannter Blockchain Explorer, der auch Interaktionen mit Smart-Contracts erlaubt.</p>
+                 <ul>
+                   <li>Digital Asset <a href="https://etherscan.io/token/0x725b190bc077ffde17cf549aa8ba25e298550b18" target="_blank">CORI Token</a> (kWh je Jahr)</a>
+                   <li>STROMDAO <a href="https://etherscan.io/address/0xfa21fb716322ee4ebbec6aefb9208a428e0b56f4" target="_blank">Account</a></a>
+                 </ul>
+               </div>
+             </div>
+             <div class="card text-dark bg-light">
+               <div class="card-header bg-dark text-light">
+                 Importieren bei Metamask
+               </div>
+               <a href="https://metamask.io/" target="_blank"><img class="card-img-top" src="./assets/img/metamask.png" alt="Metamask"></a>
+               <div class="card-body">
+                 <p>Metamask ist eine Chrome/Firefox-Erweiterung die eine direkte Interaktion mit der Ethereum-Blockchain ermöglicht.</p>
+                 <ul>
+                     <li><a href="https://metamask.io/" target="_blank">Metamask</a> installieren</li>
+                     <li><em>Import Account</em> wählen</li>
+                     <li><em>Select Type: Private Key</em></li>
+                 </ul>
+               </div>
+             </div>
+           </div>
+           <div class="spacer" style="height:25px;"></div>
+           <div class="alert alert-danger shadow-lg" role="alert" style="display:none" id="tx_alert">
+             <strong>Wichtiger Hinweis!</strong><br/>Den privaten Schlüssel niemals auf unsicheren/unbekannten Webseiten oder APPs verwenden. Der private Schlüssel sicher notieren/speichern, er kann bei Verlust nicht wiederhergestellt werden.
+             Der Kundenservice ist unter <a href="tel:+4962269680090" class="alert-link">(06226) 9680090</a> oder <a href="mailto:kontakt@stromdao.de" class="alert-link">kontakt@stromdao.de</a> erreichbar.
+           </div>
+
+
+
+           <div class="spacer" style="height:100px;"></div>
+         </div>
+       </div>
+       <footer class="footer">
+      <p class="text-muted">© 2016-2018 STROMDAO - | <a href="https://stromdao.de/de/impressum">Impressum und Datenschutzhinweis</a> | <a href="https://stromdao.de/de/kontakt">Kontakt</a> |
+         <a href='./wallet.html' title='Ethereum Wallet/Account'><span class="address"></span></a> | <a href='#' id='logout'>abmelden</a></small>
+         </p>
+       </footer>
+    <script src="assets/js/main.min.js"></script>
+     <script src="assets/js/app.js"></script>
+     <script>
+
+     </script>
+  </body>
+
+</html>
