@@ -1,13 +1,38 @@
+<!--
+  ~ MIT License
+  ~
+  ~ Copyright (c) 2020 Nordic Energy. Co., Ltd.
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="description" content="Stromtarif für Eigenstrom der STROMDAO">
-    <meta name="keywords" content="Stromtarif, Eigenstrom, STROMDAO, Blockchain">
+    <meta name="description" content="
+Electricity tariff for own electricity NORDICENERGY">
+    <meta name="keywords" content="Stromtarif, Eigenstrom, NORDICENERGY, Blockchain">
     <meta name="author" content="Thorsten Zoerner">
-    <title>Corrently - Eigenstrom</title>
+    <title>Nordic Energy - Eigenstrom</title>
     <link rel="shortcut icon" href="favicon.ico">
     <style>
     html {
@@ -39,7 +64,8 @@
   <body>
 
       <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top shadow-lg">
-           <a class="navbar-brand" href="./"><img src="./imgs/corrently_logo.png" alt="Corrently - Eigentstrom durch Stromverbrauch"></a>
+           <a class="navbar-brand" href="./"><img src="./imgs/nordicenergy_logo.png" alt="Nordic Energy -
+Own electricity through electricity consumption"></a>
            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
              <span class="navbar-toggler-icon"></span>
            </button>
@@ -47,7 +73,7 @@
            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
              <ul class="navbar-nav mr-auto">
                <li class="nav-item active">
-                 <a class="nav-link" href="./main.html">Mein Corrently</a>
+                 <a class="nav-link" href="./main.html">Mein Nordic Energy</a>
                </li>
                <li class="nav-item" id="nav_stromtarif" style="display:none">
                  <a class="nav-link" href="./tarif.html">Stromtarif</a>
@@ -56,7 +82,7 @@
                  <a class="nav-link" href="./wallet.html">Wallet</a>
                </li>
                <li class="nav-item">
-                 <a class="nav-link" href="https://coingate.com/pay/corrently-100" rel="noopener noreferrer nofollow" target="_blank">Corrently kaufen</a>
+                 <a class="nav-link" href="https://coingate.com/pay/corrently-100" rel="noopener noreferrer nofollow" target="_blank">Nordic Energy kaufen</a>
                </li>
              </ul>
            </div>
@@ -67,7 +93,7 @@
               <div class="card-group shadow-lg">
                   <div class="card text-dark bg-light">
                     <div class="card-header bg-dark text-light">
-                        Verfügbare Corrently
+                        Verfügbare Nordic Energy
                     </div>
                     <div class="card-body" style="text-align:center">
                       <h1 class="text-warning" title="Betrag, der genutzt werden kann, um neue Erzeugung zu erwerben.">
@@ -75,15 +101,15 @@
                           <span class="balance_corrently">-</span>
                         </strong>
                       </h1>
-                      bereits genutzt <span class="convertedSupply">-</span> Corrently
+                      bereits genutzt <span class="convertedSupply">-</span> Nordic Energy
                     </div>
                   </div>
                   <div class="card text-dark bg-light">
                     <div class="card-header bg-dark text-light">
-                      Corrently Eigenstrom
+                      Nordic Energy Eigenstrom
                     </div>
                     <div class="card-body" style="text-align:center">
-                      <h1 class="text-warning" title="Bisher erzeugter Corrently Eigenstrom">
+                      <h1 class="text-warning" title="Bisher erzeugter Nordic Energy Eigenstrom">
                           <span class="balance_eigenstrom">-</span>
                       </h1>
                       kWh
@@ -102,7 +128,7 @@
                       Deckung des Eigenbedarfs
                     </div>
                     <div class="card-body" style="text-align:center">
-                      <h1 class="text-warning" title="Anteil des Jahresverbrauchs, der durch Corrently Eigenstrom gededkt werden kann."><span class="balance_autark">-</span>%</h1>
+                      <h1 class="text-warning" title="Anteil des Jahresverbrauchs, der durch Nordic Energy Eigenstrom gededkt werden kann."><span class="balance_autark">-</span>%</h1>
                       <span class="kwh_autark"></span>&nbsp;kWh im Jahr
                     </div>
                   </div>
@@ -150,7 +176,7 @@
                             <strong>Erzeuger</strong>
                           </div>
                           <div class="col" style='text-align:right'>
-                            <strong>Corrently</strong>
+                            <strong>Nordic Energy</strong>
                           </div>
                           <div class="col" style='text-align:right'>
                             <strong>kWh/Jahr</strong>
@@ -163,7 +189,7 @@
                    </div>
                  </div>
                  <div class="spacer" style="height:25px;"></div>
-                 <h2>Erzeugungskapazitäten Corrently Eigenstrom</h2>
+                 <h2>Erzeugungskapazitäten Nordic Energy Eigenstrom</h2>
                  <div class="card-group shadow shadow-lg">
                    <div class="card">
                      <div class="card-body">
@@ -180,7 +206,7 @@
           </div>
        </div>
        <footer class="footer">
-         <p class="text-muted">© 2016-2018 STROMDAO - | <a href="https://stromdao.de/de/impressum">Impressum und Datenschutzhinweis</a> | <a href="https://stromdao.de/de/kontakt">Kontakt</a> |
+         <p class="text-muted">© 2016-2018 NORDICENERGY - | <a href="https://stromdao.de/de/impressum">Impressum und Datenschutzhinweis</a> | <a href="https://stromdao.de/de/kontakt">Kontakt</a> |
          <a href='./wallet.html' title='Ethereum Wallet/Account'><span class="address"></span></a> | <a href='#' id='logout'>Geräteverknüpfung aufheben (abmelden)</a></small>
          </p>
        </footer>

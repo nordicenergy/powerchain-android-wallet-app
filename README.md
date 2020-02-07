@@ -1,2 +1,2 @@
-# Corrently-Android-App
-Basic Android Corrently Wallet (German)
+# Nordic Energy-Android-App
+Basic Android Nordic Energy Wallet (German)
