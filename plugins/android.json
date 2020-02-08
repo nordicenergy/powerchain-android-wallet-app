@@ -8,7 +8,7 @@
     },
     "installed_plugins": {
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "de.corrently.app"
+            "PACKAGE_NAME": "en.nordicenergy.app"
         }
     },
     "dependent_plugins": {}

@@ -1,13 +1,37 @@
+--
+  ~ MIT License
+  ~
+  ~ Copyright (c) 2020 Nordic Energy. Co., Ltd.
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="description" content="Stromtarif für Eigenstrom der NORDICENERGY">
-    <meta name="keywords" content="Stromtarif, Eigenstrom, NORDICENERGY, Blockchain">
-    <meta name="author" content="Henrik H. Boelsmand">
-    <title>Nordic Energy - Eigenstrom</title>
+    <meta name="description" content="Electricity tariff for own electricity NORDICENERGY">
+    <meta name="keywords" content="Electricity tariff, own electricity, NORDICENERGY, Blockchain">
+    <meta name="author" content="Nordic Energy">
+    <title>Nordic Energy - Internal power</title>
     <link rel="shortcut icon" href="favicon.ico">
     <style>
     html {
@@ -39,73 +63,146 @@
   <body>
 
       <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top shadow-lg">
-           <a class="navbar-brand" href="./"><img src="./imgs/corrently_logo.png" alt="Nordic Energy - Eigentstrom durch Stromverbrauch"></a>
+           <a class="navbar-brand" href="./"><img src="./imgs/nordicenergy_logo.png" alt="Nordic Energy -
+Own electricity through electricity consumption"></a>
            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
              <span class="navbar-toggler-icon"></span>
            </button>
 
            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
              <ul class="navbar-nav mr-auto">
-               <li class="nav-item">
+               <li class="nav-item active">
                  <a class="nav-link" href="./main.html">My Energy</a>
                </li>
-               <li class="nav-item active">
-                 <a class="nav-link" href="./tarif.html">Tarifwechsel</a>
+               <li class="nav-item" id="nav_stromtarif" style="display:none">
+                 <a class="nav-link" href="./tarif.html">Stromtarif</a>
+               </li>
+               <li class="nav-item" id="nav_wallet" style="display:none">
+                 <a class="nav-link" href="./wallet.html">Wallet</a>
+               </li>
+               <li class="nav-item">
+                 <a class="nav-link" href="https://coingate.com/pay/nesc-100" rel="noopener noreferrer nofollow" target="_blank">buy energy</a>
                </li>
              </ul>
            </div>
         </nav>
 
+        <div class="container">
+           <div style="padding-top:120px;">
+              <div class="card-group shadow-lg">
+                  <div class="card text-dark bg-light">
+                    <div class="card-header bg-dark text-light">Available energy
+                    </div>
+                    <div class="card-body" style="text-align:center">
+                      <h1 class="text-warning" title="Amount that can be used to purchase new generation.">
+                        <strong>
+                          <span class="balance_corrently">-</span>
+                        </strong>
+                      </h1>
+                        already used <span class="convertedSupply">-</span>energy
+                    </div>
+                  </div>
+                  <div class="card text-dark bg-light">
+                    <div class="card-header bg-dark text-light">Nordic Energy Internal power
+                    </div>
+                    <div class="card-body" style="text-align:center">
+                      <h1 class="text-warning" title="Previously generated NESC stablecoins">
+                          <span class="balance own current">-</span>
+                      </h1>kWh
+                    </div>
+                  </div>
+                  <div class="card text-dark bg-light">
+                    <div class="card-header bg-dark text-light">Power requirements
+                    </div>
+                    <div class="card-body" style="text-align:center">
+                      <h1 class="text-warning" title="Annual electricity consumption"><span class="balance_kwha">-</span></h1>&nbsp;kWh in the year
+                    </div>
+                  </div>
+                  <div class="card text-dark bg-light">
+                    <div class="card-header bg-dark text-light">Covering your own needs
+                    </div>
+                    <div class="card-body" style="text-align:center">
+                      <h1 class="text-warning" title="Anteil des Jahresverbrauchs, der durch Nordic Energy Eigenstrom gededkt werden kann."><span class="balance_autark">-</span>%</h1>
+                      <span class="kwh_autark"></span>&nbsp;kWh in the year
+                    </div>
+                  </div>
+                </div>
+                <div id="info_box" style="display:none">
+                <div class="spacer" style="height:25px;"></div>
+                <div class="card-group shadow-lg" style="display:screen">
+                    <div class="card text-dark bg-white shadow-lg" id="portfolio_box" style="display:screen">
+                      <div class="card-header bg-dark text-light">Generation portfolio
+                      </div>
+                      <div class="card-body bg-white" style="text-align:center">
+                        <canvas id="portfolio" class="embed-responsive"></canvas>
+                      </div>
+                    </div>
+                    <div class="card text-dark bg-white shadow-lg" id="demand_box" style="display:screen">
+                      <div class="card-header bg-dark text-light">Power requirements
+                      </div>
+                      <div class="card-body bg-white" style="text-align:center">
+                        <canvas id="demand" class="embed-responsive"></canvas>
+                      </div>
+                    </div>
+              </div>
+            </div>
+              <div class="spacer" style="height:25px;"></div>
+              <h2>Marketplace</h2>
+              <div class="card-group shadow-lg" id="offers">
+              </div>
+                <div id="tx_history" style="display:none">
+                  <div class="spacer" style="height:25px;"></div>
+                  <h2>Marked transactions</h2>
+                  <div class="alert alert-danger shadow-lg" role="alert" style="display:none" id="tx_alert">
+                    <strong>Note: reservation</strong><br/>There has been no annual consumption in <a href="./tarif.html" class="alert-link">electricity tariff</a>
+                      delivered arrange At least one transaction was therefore only reserved and not yet confirmed in the blockchain as digital property. Customer service is below <a href="tel:+358" class="alert-link">phone number coming soon!</a> or <a href="mailto:contact@nordicenergy.co" class="alert-link">contact@nordicenergy.co</a> erreichbar.
+                  </div>
+                  <div class="card-group shadow shadow-lg">
+                    <div class="card shadow-lg">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col">
+                            <strong>Date / time</strong>
+                          </div>
+                          <div class="col">
+                            <strong>Producer</strong>
+                          </div>
+                          <div class="col" style='text-align:right'>
+                            <strong>Energy</strong>
+                          </div>
+                          <div class="col" style='text-align:right'>
+                            <strong>kWh/Year</strong>
+                          </div>
+                        </div>
+                        <div class="transactions">
 
-        <div style="padding-top:120px;">
-             <div class="embed-responsive embed-responsive-1by1">
-         <iframe src="https://stadtwerke-energie-verbund.de/tarife-iframe?Reseller=c3ec23a16304f8d6c8692dcac2343c05&resellerId=&Dynamic=1&products=PP_dynamisch_eingeschr_4;PP_dynamisch_eingeschr_3;GP_dynamisch_4;GP_dynamisch_3;&a=;;GPE02V04;GPE02V04;&b=PPE02V04;PPE02V04;;;&c=;;;;&d=PPE07V03;PPE07V02;GPE07V03;GPE07V02;&e=PPE04V03;PPE04V03;GPE04V01;GPE04V03;&f=PPE05V01;PPE05V04;GPE05V01;GPE05V04;&g=PPE03V01;PPE03V01;GPE03V01;GPE03V01;&h=PPE08V01;PPE08V01;GPE08V02;GPE08V02;&i=PPE01V02;PPE01V02;GPE01V01;GPE01V01;&j=PPE12V01;PPE12V01;GPE12V01;GPE12V01;&k=PPE11V0001;PPE11V0001;GPE11V0001;GPE11V0001;&l=PPE13V01;PPE13V01;GPE13V01;GPE13V01;&m=PPE14V0;PPE14V0;GPE14V0;GPE14V0;&n=PPE15V01;PPE15V01;GPE15V01;GPE15V01;&o=PPE16V11;PPE16V05;GPE16V15;GPE16V07;&z=Nordic Energy Strom;Standard Ökostrom;Nordic Energy Gas;Standard  Gas (CO2 Neutral);"
-         class="embed-responsive-item" id="tarifframe">
-         </iframe>
+                        </div>
+                     </div>
+                   </div>
+                 </div>
+                 <div class="spacer" style="height:25px;"></div>
+                 <h2>Generation capacity of own electricity</h2>
+                 <div class="card-group shadow shadow-lg">
+                   <div class="card">
+                     <div class="card-body">
+                         <div id="aliases">
+                           <div class="alert alert-warning shadow-lg" role="alert">No transactions in the public Ethereum blockchain yet.
+                           </div>
+                         </div>
+                       </div>
+                   </div>
+                </div>
+               </div>
+             <div class="spacer" style="height:100px;"></div>
+          </div>
        </div>
-     </div>
        <footer class="footer">
-         <p class="text-muted">© 2018-2020 NORDICENERGY - | <a href="https://nordicenergy/en/impressum">
-Imprint and data protection notice</a> | <a href="https://nordicenergy/en/contact">Contact</a> |
-        <a href='./wallet.html' title='Ethereum Wallet/Account'><span class="address"></span></a> | <a href='#' id='logout'>
-sing out</a></small>
+         <p class="text-muted">© 2018-2020 NORDICENERGY - | <a href="https://nordicenergy/en/impressum">Imprint and data protection notice</a> | <a href="https://nordicenergy/en/contact">Contact</a> |
+         <a href='./wallet.html' title='Ethereum Wallet/Account'><span class="address"></span></a> | <a href='#' id='logout'>Unlink device (sing out)</a></small>
          </p>
        </footer>
     <script src="assets/js/main.min.js"></script>
      <script src="assets/js/app.js"></script>
-     <script>
-     var $window = $(window);
-     var responded=false;
-     function checkWidth() {
-         var windowsize = $window.width();
-         if ((windowsize < 600)||(responded)) {
-             responded=true;
-             //if the window is greater than 440px wide then turn on jScrollPane..
-             $('#tarifframe').css('position','absolute');
-             $('#tarifframe').css('top','130');
-             $('#tarifframe').css('left','0');
-             //$('#tarifframe').css('width',windowsize-20);
-             $(document).ready(function() {
-                     location.href=$('#tarifframe').attr('src')+"&ressellerId="+window.wallet.address;
-                     $('#tarifframe').width($window.width());
-                     $('#tarifframe').height($window.height());
-              });
-         } else {
-           $('#tarifframe').width($window.width()-20);
-           $('#tarifframe').height($window.height()-240);
-         }
-     }
-     // Execute on load
-     checkWidth();
-     // Bind event listener
-     $(window).resize(checkWidth);
-     $(document).ready(function() {
-       if(typeof window.wallet != "undefined") {
-              $('#tarifframe').attr("src",$('#tarifframe').attr("src")+"&ressellerId="+window.wallet.address);
-       }
-     })
-     </script>
-
   </body>
 
 </html>

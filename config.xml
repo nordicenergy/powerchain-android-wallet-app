@@ -23,12 +23,12 @@
   ~ SOFTWARE.
   -->
 
-<widget id="de.corrently.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="en.nordicenergy.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Nordic Energy</name>
     <description>
     </description>
-    <author email="info@nordicenergy.co" href="https://ictsystems.net">
-        Nordic Energy &amp; ICT-Solutions Inc.
+    <author email="info@nordicenergy.co" href="https://app.nordicenergy.co">
+        Nordic Energy Co. Ltd.
     </author>
     <content src="splashscreen.html" />
     <plugin name="cordova-plugin-whitelist" spec="1" />

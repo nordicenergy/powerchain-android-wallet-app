@@ -1,2 +1,4 @@
-# Nordic Energy-Android-App
-Basic Android Nordic Energy Wallet (German)
+
+# Nordic Energy - PowerChain Android Wallet App
+
+### Digital Energy - Basic Android Wallet App

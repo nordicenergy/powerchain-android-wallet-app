@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="description" content="Stromtarif für Eigenstrom der NORDICENERGY">
-    <meta name="keywords" content="Stromtarif, Eigenstrom, NORDICENERGY, Blockchain">
+    <meta name="description" content="Electricity tariff für Internal power der NORDICENERGY">
+    <meta name="keywords" content="Electricity tariff, Internal power, NORDICENERGY, Blockchain">
     <meta name="author" content="Thorsten Zoerner">
-    <title>Nordic Energy - Eigenstrom</title>
+    <title>Nordic Energy - Internal power</title>
     <link rel="shortcut icon" href="favicon.ico">
     <style>
     html {
@@ -49,14 +49,14 @@
                <li class="nav-item active">
                  <a class="nav-link" href="./main.html">My Energy</a>
                </li>
-               <li class="nav-item" id="nav_stromtarif" style="display:none">
-                 <a class="nav-link" href="./tarif.html">Stromtarif</a>
+               <li class="nav-item" id="nav_Electricity tariff" style="display:none">
+                 <a class="nav-link" href="./tarif.html">Electricity tariff</a>
                </li>
                <li class="nav-item" id="nav_wallet" style="display:none">
                  <a class="nav-link" href="./wallet.html">Wallet</a>
                </li>
                <li class="nav-item">
-                 <a class="nav-link" href="https://coingate.com/pay/corrently-100" rel="noopener noreferrer nofollow" target="_blank">buy energy</a>
+                 <a class="nav-link" href="https://coingate.com/pay/nesc-100" rel="noopener noreferrer nofollow" target="_blank">buy energy</a>
                </li>
              </ul>
            </div>
@@ -67,43 +67,43 @@
               <div class="card-group shadow-lg">
                   <div class="card text-dark bg-light">
                     <div class="card-header bg-dark text-light">
-                        Verfügbare Nordic Energy
+                        Available Energy
                     </div>
                     <div class="card-body" style="text-align:center">
-                      <h1 class="text-warning" title="Betrag, der genutzt werden kann, um neue Erzeugung zu erwerben.">
+                      <h1 class="text-warning" title="Amount that can be used to purchase new generation.">
                         <strong>
                           <span class="balance_corrently">-</span>
                         </strong>
                       </h1>
-                      bereits genutzt <span class="convertedSupply">-</span> Nordic Energy
+                     already used <span class="convertedSupply">-</span>energy
                     </div>
                   </div>
                   <div class="card text-dark bg-light">
                     <div class="card-header bg-dark text-light">
-                      Nordic Energy Eigenstrom
+                      Internal power
                     </div>
                     <div class="card-body" style="text-align:center">
-                      <h1 class="text-warning" title="Bisher erzeugter Nordic Energy Eigenstrom">
-                          <span class="balance_eigenstrom">-</span>
+                      <h1 class="text-warning" title="Bisher erzeugter Nordic Energy Internal power">
+                          <span class="balance_Internal power">-</span>
                       </h1>
                       kWh
                     </div>
                   </div>
                   <div class="card text-dark bg-light">
                     <div class="card-header bg-dark text-light">
-                      Strombedarf
+                      Marketplace
                     </div>
                     <div class="card-body" style="text-align:center">
-                      <h1 class="text-warning" title="Im Stromtarif hinterlegter Jahresverbrauch"><span class="balance_kwha">-</span></h1>&nbsp;kWh im Jahr
+                      <h1 class="text-warning" title="Annual consumption stored in the electricity tariff"><span class="balance_kwha">-</span></h1>&nbsp;kWh in the year
                     </div>
                   </div>
                   <div class="card text-dark bg-light">
                     <div class="card-header bg-dark text-light">
-                      Deckung des Eigenbedarfs
+                      Covering your own needs
                     </div>
                     <div class="card-body" style="text-align:center">
-                      <h1 class="text-warning" title="Anteil des Jahresverbrauchs, der durch Nordic Energy Eigenstrom gededkt werden kann."><span class="balance_autark">-</span>%</h1>
-                      <span class="kwh_autark"></span>&nbsp;kWh im Jahr
+                      <h1 class="text-warning" title="Proportion of annual consumption that can be covered by Nordic Energy´s Internal power."><span class="balance_autark">-</span>%</h1>
+                      <span class="kwh_autark"></span>&nbsp;kWh in the year
                     </div>
                   </div>
                 </div>
@@ -112,7 +112,7 @@
                 <div class="card-group shadow-lg" style="display:screen">
                     <div class="card text-dark bg-white shadow-lg" id="portfolio_box" style="display:screen">
                       <div class="card-header bg-dark text-light">
-                        Erzeugungs Portfolio
+                        Generation portfolio
                       </div>
                       <div class="card-body bg-white" style="text-align:center">
                         <canvas id="portfolio" class="embed-responsive"></canvas>
@@ -120,7 +120,7 @@
                     </div>
                     <div class="card text-dark bg-white shadow-lg" id="demand_box" style="display:screen">
                       <div class="card-header bg-dark text-light">
-                        Strombedarf
+                        Power requirements
                       </div>
                       <div class="card-body bg-white" style="text-align:center">
                         <canvas id="demand" class="embed-responsive"></canvas>
@@ -129,31 +129,30 @@
               </div>
             </div>
               <div class="spacer" style="height:25px;"></div>
-              <h2>Marktplatz</h2>
+              <h2>Marketplace</h2>
               <div class="card-group shadow-lg" id="offers">
               </div>
                 <div id="tx_history" style="display:none">
                   <div class="spacer" style="height:25px;"></div>
                   <h2>Vorgemerkte Transaktionen</h2>
                   <div class="alert alert-danger shadow-lg" role="alert" style="display:none" id="tx_alert">
-                    <strong>Hinweis: Vormerkung</strong><br/>Es wurde noch kein Jahresverbrauch im <a href="./tarif.html" class="alert-link">Stromtarif</a> zugeordnet.
-                    Mindestens eine Transaktion wurden daher lediglich vorgemerkt und noch nicht in der Blockchain als digitales Eigentum bestätigt. Customer service is below <a href="tel:+358" class="alert-link">phone number coming soon!</a> or <a href="mailto:contact@nordicenergy.co" class="alert-link">contact@nordicenergy.co</a> erreichbar.
+                    <strong>Note: reservation</strong><br/>There has been no annual consumption in <a href="./tarif.html" class="alert-link">Electricity tariff</a>Assigned. At least one transaction was therefore only reserved and not yet confirmed in the blockchain as digital property. Customer service is below <a href="tel:+358" class="alert-link">phone number coming soon!</a> or <a href="mailto:contact@nordicenergy.co" class="alert-link">contact@nordicenergy.co</a> reachable.
                   </div>
                   <div class="card-group shadow shadow-lg">
                     <div class="card shadow-lg">
                       <div class="card-body">
                         <div class="row">
                           <div class="col">
-                            <strong>Datum/Uhrzeit</strong>
+                            <strong>Date / time</strong>
                           </div>
                           <div class="col">
-                            <strong>Erzeuger</strong>
+                            <strong>Producer</strong>
                           </div>
                           <div class="col" style='text-align:right'>
-                            <strong>Nordic Energy</strong>
+                            <strong>Energy</strong>
                           </div>
                           <div class="col" style='text-align:right'>
-                            <strong>kWh/Jahr</strong>
+                            <strong>kWh/year</strong>
                           </div>
                         </div>
                         <div class="transactions">
@@ -163,13 +162,13 @@
                    </div>
                  </div>
                  <div class="spacer" style="height:25px;"></div>
-                 <h2>Erzeugungskapazitäten Nordic Energy Eigenstrom</h2>
+                 <h2>There has been no annual consumption in</h2>
                  <div class="card-group shadow shadow-lg">
                    <div class="card">
                      <div class="card-body">
                          <div id="aliases">
                            <div class="alert alert-warning shadow-lg" role="alert">
-                             Noch kein Transaktionen in der öffentlichen Ethereum Blockchain vorhanden.
+                             No transactions in the public Ethereum blockchain yet
                            </div>
                          </div>
                        </div>
@@ -180,10 +179,8 @@
           </div>
        </div>
        <footer class="footer">
-         <p class="text-muted">© 2018-2020 NORDICENERGY - | <a href="https://nordicenergy/en/impressum">
-Imprint and data protection notice</a> | <a href="https://nordicenergy/en/contact">Contact</a> |
-         <a href='./wallet.html' title='Ethereum Wallet/Account'><span class="address"></span></a> | <a href='#' id='logout'>Geräteverknüpfung aufheben (
-sing out)</a></small>
+         <p class="text-muted">© 2018-2020 NORDICENERGY - | <a href="https://nordicenergy/en/impressum">Imprint and data protection notice</a> | <a href="https://nordicenergy/en/contact">Contact</a> |
+         <a href='./wallet.html' title='Ethereum Wallet/Account'><span class="address"></span></a> | <a href='#' id='logout'>Device linkcancel (sing out)</a></small>
          </p>
        </footer>
     <script src="assets/js/main.min.js"></script>
