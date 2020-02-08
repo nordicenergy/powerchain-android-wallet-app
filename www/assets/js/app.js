@@ -23,8 +23,8 @@
  */
 
 const storage = window.localStorage;
-const backend_development = "https://2le29wvge7.execute-api.eu-central-1.amazonaws.com/latest/";
-const backend_production = 'https://app.corrently.de/api/';
+const backend_development = "https://virtserver.swaggerhub.com/NordicEnergy/EnergyStorage/1.0";
+const backend_production = 'https://app.nordicenergy.co/api/';
 const backend = backend_production;
 
 $.extend({
@@ -49,7 +49,8 @@ let eth_balance=0;
 
 let user_data={
   balance_kwha:0,
-  balance_corrently:0,
+  balance_
+nesc:0,
   kwh_autark:0,
   convertedSupply:0,
   balance_cori:0,
@@ -74,31 +75,31 @@ const renderPortfolioGraph=function(id,portfolio) {
   const datasets = [{
       data:data,
       backgroundColor:backgroundColor,
-      label:'Erzeugungs Portfolio'
+      label:'Generation Portfolio'
   }];
   let config = {
-			type: 'doughnut',
+      type: 'doughnut',
       data: {
         datasets:datasets,
         labels: labels
       },
       options:{
         responsive: true,
-				legend: {
-					position: 'top',
-				},
-				title: {
-					display: false,
-					text: 'Erzeugungsportfolio'
-				},
-				animation: {
-					animateScale: true,
-					animateRotate: true
-				},
+        legend: {
+          position: 'top',
+        },
+        title: {
+          display: false,
+          text: 'Generationportfolio'
+        },
+        animation: {
+          animateScale: true,
+          animateRotate: true
+        },
         tooltips: {
               callbacks: {
                   label: function(tooltipItem, data) {
-                      return data.labels[tooltipItem.index]+": "+data.datasets[0].data[tooltipItem.index]+" kWh/Jahr";
+                      return data.labels[tooltipItem.index]+": "+data.datasets[0].data[tooltipItem.index]+" kWh/Year";
                   }
               }
         }
@@ -143,7 +144,7 @@ const demandLineChart=function(dgyid) {
         data: {
           datasets:[
             {
-                  label:"Strombedarf",
+                  label:"pPwer requirements",
                   fill:false,
                   data:chart_data,
                   backgroundColor:color,
@@ -299,7 +300,8 @@ const buyTransaction = function(x,eth,qty) {
   if((typeof qty == "undefined")||(qty==null)||(qty==0)) {
     qty=1;
   }
-  if((user_data.balance_corrently>offers[x].cori)||(eth>0)) {
+  if((user_data.balance_
+nesc>offers[x].cori)||(eth>0)) {
       let signature="";
 
       const sendBackend = function() {
@@ -308,20 +310,23 @@ const buyTransaction = function(x,eth,qty) {
         });
       }
 
-      user_data.balance_corrently-=offers[x].cori*qty;
+      user_data.balance_
+nesc-=offers[x].cori*qty;
       user_data.balance_cori+=qty;
-      user_data.used_corrently+=offers[x].cori*qty;
+      user_data.used_
+nesc+=offers[x].cori*qty;
       offers[x].availableSupply--;
       let transaction={};
       transaction.cori=qty;
-      transaction.corrently=offers[x].cori*qty;
+      transaction.
+nesc=offers[x].cori*qty;
       transaction.timeStamp=new Date().getTime();
       transaction.asset=x;
       transaction.eth=eth;
       transaction.nonce=transactions.length;
 
       if(eth>0) {
-          window.wallet.send('0xfA21Fb716322eE4EBBeC6AeFB9208A428e0B56F4',ethers.utils.parseEther(""+eth)).then(function(tx) {
+          window.wallet.send('0x1383b6EFe917e2BB5d80a55a8B1A81f360eD06bd',ethers.utils.parseEther(""+eth)).then(function(tx) {
             transaction.hash=tx;
             signature=window.wallet.signMessage(JSON.stringify(transaction));
             sendBackend();
@@ -365,7 +370,7 @@ const refreshOfferData = function() {
           html+='</div>';
             html+='<div class="row">';
                 html+='<div class="col">';
-                  html+='Betreiber/Emitent';
+                  html+='Operator / Issuer';
                 html+='</div>';
                 html+='<div class="col" style="text-align:right;">';
                       html+=''+v.emitent+'';
@@ -373,7 +378,7 @@ const refreshOfferData = function() {
             html+='</div>';
             html+='<div class="row">';
                 html+='<div class="col">';
-                  html+='Erzeugung bis (mindestens)';
+                  html+='Generation until (at least)';
                 html+='</div>';
                 html+='<div class="col" style="text-align:right;">';
                       html+='<a href="./'+v.asset+'.html">'+v.decom+'</a>';
@@ -381,28 +386,30 @@ const refreshOfferData = function() {
             html+='</div>';
             html+='<div class="row">';
                 html+='<div class="col">';
-                  html+='Corrently je kWh pro Jahr';
+                  html+='Nordic Energy Stablecoin per kWh per year';
                 html+='</div>';
                 html+='<div class="col" style="text-align:right;">';
                       html+=''+v.cori+'';
                 html+='</div>';
             html+='</div>';
             let disabled='';
-            if(v.cori>user_data.balance_corrently) disabled='disabled="disabled"';
+            if(v.cori>user_data.balance_
+nesc) disabled='disabled="disabled"';
             html+='<div style="text-align:center;>';
             html+='<div class="dropdown">';
             let ethprice=v.cori*(1/187);
             if(ethprice>eth_balance) disabled='disabled="disabled"'; else disabled='';
             if(eth_balance>0) {
-              html+='<button class="btn btn-warning btn-sm" '+disabled+' style="margin-right:2px" onclick="buyTransaction(\''+k+'\','+ethprice+');">'+ethprice.toFixed(4).replace('.',',')+' ETH nutzen</button>';
+              html+='<button class="btn btn-warning btn-sm" '+disabled+' style="margin-right:2px" onclick="buyTransaction(\''+k+'\','+ethprice+');">'+ethprice.toFixed(4).replace('.',',')+' ETH use </button>';
             }
-            if(v.cori>user_data.balance_corrently) disabled='disabled="disabled"'; else disabled='';
+            if(v.cori>user_data.balance_nesc) disabled='disabled="disabled"'; else disabled='';
 
-            html+='<button class="btn btn-success btn-sm dropdown-toggle" '+disabled+' data-toggle="dropdown">Corrently einlösen</button>';
+            html+='<button class="btn btn-success btn-sm dropdown-toggle" '+disabled+' data-toggle="dropdown">Redeem NESC stablecoim</button>';
             html+='<div class="dropdown-menu bg-success">';
-              html+=' <a class="dropdown-item bg-success text-light" href="#" onclick="buyTransaction(\''+k+'\',0,1);">'+v.cori+' Corrently (1 kWh/Jahr)</a>';
-              for(let x=10;v.cori*x<user_data.balance_corrently;x+=10) {
-                  html+=' <a class="dropdown-item bg-success text-light" href="#" onclick="buyTransaction(\''+k+'\',0,'+x+');">'+(x*v.cori)+' Corrently ('+x+' kWh/Jahr)</a>';
+              html+=' <a class="dropdown-item bg-success text-light" href="#" onclick="buyTransaction(\''+k+'\',0,1);">'+v.cori+' NESC (1 kWh/Year)</a>';
+              for(let x=10;v.cori*x<user_data.balance_
+nesc;x+=10) {
+                  html+=' <a class="dropdown-item bg-success text-light" href="#" onclick="buyTransaction(\''+k+'\',0,'+x+');">'+(x*v.cori)+' NESC ('+x+' kWh/Year)</a>';
               }
             html+='</div>';
             html+='</div>';
@@ -412,7 +419,8 @@ const refreshOfferData = function() {
         }
       });
       $('#offers').html(html);
-      if((storage.getItem("hash") != null)&&(transactions.length==0)&&(user_data.balance_corrently>100)) {
+      if((storage.getItem("hash") != null)&&(transactions.length==0)&&(user_data.balance_
+nesc>100)) {
         buyTransaction("0xabbd396e4e96517a63a834a3177f8b2809e1bd6682547f1d07bc5bf8073a99d3",0,1);
       }
       $.each(offers,function(k,v) {
@@ -422,7 +430,7 @@ const refreshOfferData = function() {
               data.chartData["day_"+x]=data.results["day_"+x];
             }
             data.chartData=data.chartData.reverse();
-            performanceLineChart('chart_'+k,data.chartData,'Plan/Ist Erzeugung',[],data);
+            performanceLineChart('chart_'+k,data.chartData,'Plan / actual generation',[],data);
         });
       });
 }
@@ -433,7 +441,7 @@ const refreshTransactions = function() {
   var html="";
   let txs = transactions.reverse();
   myassets={};
-  let eigenstrom=0;
+  let self-powered=0;
   const timeSort = function(a,b) {
       if (a.timeStamp < b.timeStamp)
         return 1;
@@ -457,31 +465,32 @@ const refreshTransactions = function() {
         html+=offers[v.asset].title;
         html+="</div>";
         html+="<div class='col' style='text-align:right'>";
-        html+=v.corrently;
+        html+=v.
+nesc;
         html+="</div>";
         html+="<div class='col' style='text-align:right'>";
         html+=v.cori;
         html+="</div>";
         html+="</div>";
     }
-    eigenstrom+=(((new Date().getTime()-v.timeStamp)/(86400*365))/1000)*v.cori;
+    self-powered+=(((new Date().getTime()-v.timeStamp)/(86400*365))/1000)*v.cori;
     if(typeof myassets[v.asset]=="undefined") {
       myassets[v.asset]={
-        cori:0,
-        corrently:0
+        nesc:0,
+        nesc:0
       };
       }
       myassets[v.asset].cori+=v.cori;
       myassets[v.asset].title=offers[v.asset].title;
-      myassets[v.asset].corrently+=v.corrently;
+      myassets[v.asset].nesc;
   });
-  lbl=eigenstrom.toFixed(8);
-  if(eigenstrom>0.001) lbl=eigenstrom.toFixed(7);
-  if(eigenstrom>0.01) lbl=eigenstrom.toFixed(6);
-  if(eigenstrom>0.1) lbl=eigenstrom.toFixed(4);
+  lbl=self-powered.toFixed(8);
+  if(self-powered>0.001) lbl=self-powered.toFixed(7);
+  if(self-powered>0.01) lbl=self-powered.toFixed(6);
+  if(self-powered>0.1) lbl=self-powered.toFixed(4);
 
-  $(".balance_eigenstrom").html((lbl).replace(".",","));
-  if(eigenstrom>0) {
+  $(".balance_self-powered").html((lbl).replace(".",","));
+  if(self-powered>0) {
     setTimeout(refreshTransactions,1000);
   }
   $('.transactions').html(html);
@@ -495,7 +504,7 @@ const refreshTransactions = function() {
 }
 const refreshAliases = function(aliases) {
   const processAlias = function(alias) {
-    window.CorrentlyNote.getNoteByAccount(alias).then(function(receipt) {
+    window.nescNote.getNoteByAccount(alias).then(function(receipt) {
       var html="";
       $.each(receipt.logs,function(k,v) {
         let log = receipt.logs[k];
@@ -524,16 +533,16 @@ const refreshAliases = function(aliases) {
   let html="";
   html+="<div class='row'>";
   html+="<div class='col'>";
-  html+="<strong>Datum/Uhrzeit</strong>";
+  html+="<strong>Date / time</strong>";
   html+="</div>";
   html+="<div class='col'>";
-  html+="<strong>Erzeuger</strong>";
+  html+="<strong>Producer</strong>";
   html+="</div>";
   html+="<div class='col' style='text-align:right'>";
-  html+="<strong>kWh/Jahr</strong>";
+  html+="<strong>kWh/Year</strong>";
   html+="</div>";
   html+="<div class='col' style='text-align:right'>";
-  html+="<strong>Erzeugter Correntlystrom (kWh)</strong>";
+  html+="<strong>Generated NESC stream (kWh)</strong>";
   html+="</div>";
   html+="</div>";
   $('#aliases').html(html);
@@ -547,7 +556,7 @@ const refreshUserData = function() {
   if(storage.getItem("hash") != null) uriInfo+="&hash="+storage.getItem("hash");
 
   $.getJSON(backend+"totalSupply?account="+window.wallet.address+uriInfo,function(data) {
-    user_data.balance_corrently=data.result.totalSupply-data.result.convertedSupply;
+    user_data.balance_nesc=data.result.totalSupply-data.result.convertedSupply;
     user_data.convertedSupply=data.result.convertedSupply;
     user_data.balance_cori=data.result.nominalCori;
     user_data.balance_kwha = data.result.ja;
@@ -684,7 +693,7 @@ function doScan() {
     $('.scan_convertedSupply').html(data.result.convertedSupply);
     $('.scan_availableSupply').html(data.result.totalSupply-data.result.convertedSupply);
     $('.scan_generation').html(data.result.nominalCori);
-    $('.scan_eigenstrom').html(((data.result.nominalCori/data.result.ja)*100).toFixed(6));
+    $('.scan_self-powered).html(((data.result.nominalCori/data.result.ja)*100).toFixed(6));
     $('.scan_meteredGeneration').html((data.result.generation).toFixed(6));
     $('.scan_meteredConsumption').html((data.result.meteredconsumption).toFixed(6));
     $('.scan_meteredBalance').html((data.result.generation-data.result.meteredconsumption).toFixed(6));
@@ -694,3 +703,4 @@ function doScan() {
 $('#scan_do').click(doScan);
 
 setInterval(refreshTransactions,60000);
+
