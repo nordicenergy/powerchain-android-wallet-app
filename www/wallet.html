@@ -72,13 +72,13 @@ Own electricity through electricity consumption"></a>
            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
              <ul class="navbar-nav mr-auto">
                <li class="nav-item" style="">
-                 <a class="nav-link" href="./main.html">Mein Nordic Energy</a>
+                 <a class="nav-link" href="./main.html">My Energy</a>
                </li>
                <li class="nav-item active" style="">
                  <a class="nav-link" href="./wallet.html">Wallet</a>
                </li>
                <li class="nav-item">
-                 <a class="nav-link" href="https://coingate.com/pay/corrently-100" rel="noopener noreferrer nofollow" target="_blank">Nordic Energy kaufen</a>
+                 <a class="nav-link" href="https://coingate.com/pay/corrently-100" rel="noopener noreferrer nofollow" target="_blank">buy energy</a>
                </li>
              </ul>
            </div>
@@ -90,7 +90,8 @@ Own electricity through electricity consumption"></a>
            <div class="card-group shadow-lg">
              <div class="card text-dark bg-light">
                <div class="card-header bg-dark text-light">
-                 Guthaben Nordic Energy (kWh Nutzung)
+
+Nordic Energy (NESC) credit (kWh usage)
                </div>
                <div class="card-body" style="text-align:center">
                  <h1 class="text-warning">
@@ -100,7 +101,7 @@ Own electricity through electricity consumption"></a>
              </div>
                <div class="card text-dark bg-light">
                  <div class="card-header bg-dark text-light">
-                     Guthaben CORI (kWh Erzeugung)
+                     NESC credit (kWh generation)
                  </div>
                  <div class="card-body" style="text-align:center">
                    <h1 class="text-warning">
@@ -112,7 +113,7 @@ Own electricity through electricity consumption"></a>
                </div>
                <div class="card text-dark bg-light">
                  <div class="card-header bg-dark text-light">
-                  Guthaben Ether
+                  Credit Ethereum
                  </div>
                  <div class="card-body" style="text-align:center">
                    <h1 class="text-warning"><span class="balance_eth"></span></h1>
@@ -122,38 +123,42 @@ Own electricity through electricity consumption"></a>
           <div class="spacer" style="height:25px;"></div>
            <div class="card text-dark bg-light shadow-lg">
              <div class="card-header bg-dark text-light">
-               Privater Schlüssel
+
+Private Key
              </div>
              <div class="card-body" style="text-align:center">
 
-              <div id="opk"><button id="showPK" class="btn btn-lg btn-danger">anzeigen</button></div>
+              <div id="opk"><button id="showPK" class="btn btn-lg btn-danger">
+Show</button></div>
             </div>
            </div>
            <div class="spacer" style="height:25px;"></div>
            <div class="card text-dark bg-light shadow-lg">
              <div class="card-header bg-dark text-light">
-               Verknüpfte Lieferstelle (Stromanschluß)
+
+
+Linked delivery point (power connection)
              </div>
              <div class="card-body" style="text-align:center">
                 <input type='text' name='demandSide' id='demandSide' class='form-control'/>
-                <button id="connectDemand" class="btn btn-lg btn-danger">Verbinden</button>
+                <button id="connectDemand" class="btn btn-lg btn-danger">Connect</button>
             </div>
            </div>
            <div class="spacer" style="height:25px;"></div>
            <div class="card text-dark bg-light shadow-lg">
              <div class="card-header bg-dark text-light">
-               Benutzername/Kennwort Wallet verwenden
+               Use username / password wallet
              </div>
              <div class="card-body" style="text-align:left">
                 <div class="form-group">
-                  <label for="username">Benutzernamen</label>
+                  <label for="username">Username</label>
                   <input type="text" name="username" class="form-control" id="username">
-                  <label for="password">Kennwort</label>
+                  <label for="password">Password</label>
                   <input type="password" name="password" class="form-control" id="password">
                   <div style="text-align:center;margin-top:5px;margin-bottom:5px;">
-                      <button id="loginBrain" class="btn btn-warning">Wallet öffnen</button>
+                      <button id="loginBrain" class="btn btn-warning">Open wallet</button>
                   </div>
-                  <p style="text-align:center">Ihr Endgerät/Browser wird automatisch mit dieser Wallet verknüpft. Die bestehende Verknüpfung wird aufgehoben.</p>
+                  <p style="text-align:center">Your device / browser is automatically linked to this wallet. The existing link is broken.</p>
                 </div>
             </div>
 
@@ -162,41 +167,47 @@ Own electricity through electricity consumption"></a>
            <div class="card-group">
              <div class="card text-dark bg-light">
                <div class="card-header bg-dark text-light">
-                 Importieren bei MyEtherWallet
+
+Import at MyEtherWallet
                </div>
                <a href="https://www.myetherwallet.com/" target="_blank"><img class="card-img-top" src="./assets/img/myetherwallet.png" alt="MyEtherwallet"></a>
                <div class="card-body">
-                 <p>MyEtherWallet ist eine Online Wallet, die Transaktionen bei der Ethereum-Blockchain erlaubt auszuführen.</p>
+                 <p>
+MyEtherWallet is an online wallet that allows transactions to be carried out on the Ethereum blockchain..</p>
                  <ul>
                    <li><a href="https://www.myetherwallet.com/" target="_blank">MyEtherWallet</a> öffnen</li>
-                   <li>Transaktion wählen (Beispiel: <em>Send Tokens</em>)</li>
-                   <li><em>How would you like to access your wallet?</em> mit <em>Private Key</em> antworten</li>
+                   <li>
+Choose transaction (example): <em>Send
+Stablecoins</em>)</li>
+                   <li><em>How would you like to access your wallet?</em> with <em>Private Key</em> reply</li>
                </div>
              </div>
              <div class="card text-dark bg-light">
                <div class="card-header bg-dark text-light">
-                 Nutzung bei Etherscan
+
+Use with Etherscan
                </div>
-                <a href="https://etherscan.io/address/0x9707f3c9ca3c554a6e6d31b71a3c03d7017063f4" id="etherscan" target="_blank">
+                <a href="https://etherscan.io/address/0xf5dbfcfb221170dc81feda0254b4c660a6c3f7d2" id="etherscan" target="_blank">
                   <img class="card-img-top" src="./assets/img/etherscan.png" alt="Etherscan"></a>
                <div class="card-body">
-                 <p>Etherscan ist ein sogenannter Blockchain Explorer, der auch Interaktionen mit Smart-Contracts erlaubt.</p>
+                 <p>Etherscan is a so-called blockchain explorer, which also allows interactions with smart contracts.</p>
                  <ul>
-                   <li>Digital Asset <a href="https://etherscan.io/token/0x725b190bc077ffde17cf549aa8ba25e298550b18" target="_blank">CORI Token</a> (kWh je Jahr)</a>
-                   <li>NORDICENERGY <a href="https://etherscan.io/address/0xfa21fb716322ee4ebbec6aefb9208a428e0b56f4" target="_blank">Account</a></a>
+                   <li>Digital Asset <a href="https://etherscan.io/token/0x1383b6EFe917e2BB5d80a55a8B1A81f360eD06bd" target="_blank">NESC Stablecoin</a> (kWh per year)</a>
+                   <li>NORDICENERGY <a href="https://etherscan.io/token/0x4d0a4c762bd7f742096daaf5911dcf9c94b9ea95" target="_blank">Account</a></a>
                  </ul>
                </div>
              </div>
              <div class="card text-dark bg-light">
                <div class="card-header bg-dark text-light">
-                 Importieren bei Metamask
+                 Import with Metamask
                </div>
                <a href="https://metamask.io/" target="_blank"><img class="card-img-top" src="./assets/img/metamask.png" alt="Metamask"></a>
                <div class="card-body">
-                 <p>Metamask ist eine Chrome/Firefox-Erweiterung die eine direkte Interaktion mit der Ethereum-Blockchain ermöglicht.</p>
+                 <p>
+Metamask is a Chrome / Firefox extension that enables direct interaction with the Ethereum blockchain.</p>
                  <ul>
-                     <li><a href="https://metamask.io/" target="_blank">Metamask</a> installieren</li>
-                     <li><em>Import Account</em> wählen</li>
+                     <li><a href="https://metamask.io/" target="_blank">Metamask</a> to install</li>
+                     <li><em>Import Account</em> choose</li>
                      <li><em>Select Type: Private Key</em></li>
                  </ul>
                </div>
@@ -204,8 +215,9 @@ Own electricity through electricity consumption"></a>
            </div>
            <div class="spacer" style="height:25px;"></div>
            <div class="alert alert-danger shadow-lg" role="alert" style="display:none" id="tx_alert">
-             <strong>Wichtiger Hinweis!</strong><br/>Den privaten Schlüssel niemals auf unsicheren/unbekannten Webseiten oder APPs verwenden. Der private Schlüssel sicher notieren/speichern, er kann bei Verlust nicht wiederhergestellt werden.
-             Der Kundenservice ist unter <a href="tel:+4962269680090" class="alert-link">(06226) 9680090</a> oder <a href="mailto:kontakt@stromdao.de" class="alert-link">kontakt@stromdao.de</a> erreichbar.
+             <strong>
+Important NOTE!</strong><br/>Never use the private key on unsafe / unknown websites or APPs. Write down / save the private key securely, it cannot be restored if lost.
+             Customer service is below <a href="tel:+358" class="alert-link">phone number coming soon!</a> or <a href="mailto:contact@nordicenergy.co" class="alert-link">contact@nordicenergy.co</a> erreichbar.
            </div>
 
 
@@ -214,8 +226,10 @@ Own electricity through electricity consumption"></a>
          </div>
        </div>
        <footer class="footer">
-      <p class="text-muted">© 2016-2018 NORDICENERGY - | <a href="https://stromdao.de/de/impressum">Impressum und Datenschutzhinweis</a> | <a href="https://stromdao.de/de/kontakt">Kontakt</a> |
-         <a href='./wallet.html' title='Ethereum Wallet/Account'><span class="address"></span></a> | <a href='#' id='logout'>abmelden</a></small>
+      <p class="text-muted">© 2018-2020 NORDICENERGY - | <a href="https://nordicenergy/en/impressum">
+Imprint and data protection notice</a> | <a href="https://nordicenergy/en/contact">Contact</a> |
+         <a href='./wallet.html' title='Ethereum Wallet/Account'><span class="address"></span></a> | <a href='#' id='logout'>
+sing out</a></small>
          </p>
        </footer>
     <script src="assets/js/main.min.js"></script>
